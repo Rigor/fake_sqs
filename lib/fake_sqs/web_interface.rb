@@ -13,6 +13,12 @@ module FakeSQS
         params.fetch("Action")
       end
 
+      if Gem::Version.new(Sinatra::VERSION) < Gem::Version.new('1.3')
+        def logger
+          request.logger
+        end
+      end
+
     end
 
     get "/" do
